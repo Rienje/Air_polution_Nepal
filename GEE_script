@@ -1,0 +1,349 @@
+code for geometries
+
+var Nepal_outline = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[79.90850058189332, 30.701121247119],
+          [79.90850058189332, 26.22138271554831],
+          [88.30205526939332, 26.22138271554831],
+          [88.30205526939332, 30.701121247119]]], null, false),
+    Asia_big = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[52.83114002185601, 52.55876723099213],
+          [52.83114002185601, -11.40069666200786],
+          [167.44051502185602, -11.40069666200786],
+          [167.44051502185602, 52.55876723099213]]], null, false);
+
+GEE script:
+
+
+
+
+
+
+
+// obtain NO2 mean values for nepal for april in period 2019-2020
+
+
+
+
+
+//download for 2019
+
+
+//January 2019
+var N191 = ee.ImageCollection('COPERNICUS/S5P/OFFL/L3_NO2')
+  .select('tropospheric_NO2_column_number_density')
+  .filterDate('2019-01-01', '2019-01-31');
+  
+var mN191 = N191.mean()
+
+Export.image.toDrive({
+  image: mN191,
+  description: 'mean_NO2_values_Nepal_January_2019',
+  region: Nepal_outline
+});
+  
+
+//April 2019
+var N194 = ee.ImageCollection('COPERNICUS/S5P/OFFL/L3_NO2')
+  .select('tropospheric_NO2_column_number_density')
+  .filterDate('2019-04-01', '2019-04-30');
+  
+var mN194 = N194.mean()
+
+Export.image.toDrive({
+  image: mN194,
+  description: 'mean_NO2_values_Nepal_April_2019',
+  region: Nepal_outline
+});
+  
+ 
+// July 2019
+var N197 = ee.ImageCollection('COPERNICUS/S5P/OFFL/L3_NO2')
+  .select('tropospheric_NO2_column_number_density')
+  .filterDate('2019-07-01', '2019-07-31');
+  
+var mN197 = N197.mean()
+
+Export.image.toDrive({
+  image: mN197,
+  description: 'mean_NO2_values_Nepal_July_2019',
+  region: Nepal_outline
+});
+  
+
+//October 2019  
+var N1910 = ee.ImageCollection('COPERNICUS/S5P/OFFL/L3_NO2')
+  .select('tropospheric_NO2_column_number_density')
+  .filterDate('2019-10-01', '2019-10-31');
+  
+var mN1910 = N1910.mean()
+
+Export.image.toDrive({
+  image: mN1910,
+  description: 'mean_NO2_values_Nepal_October_2019',
+  region: Nepal_outline
+});
+  
+
+
+//download for 2020
+
+
+//January 2020
+var N201 = ee.ImageCollection('COPERNICUS/S5P/OFFL/L3_NO2')
+  .select('tropospheric_NO2_column_number_density')
+  .filterDate('2020-01-01', '2020-01-31');
+  
+var mN201 = N201.mean()
+
+Export.image.toDrive({
+  image: mN201,
+  description: 'mean_NO2_values_Nepal_January_2020',
+  region: Nepal_outline
+});
+  
+
+//April 2020
+var N204 = ee.ImageCollection('COPERNICUS/S5P/OFFL/L3_NO2')
+  .select('tropospheric_NO2_column_number_density')
+  .filterDate('2020-04-01', '2020-04-30');
+  
+var mN204 = N204.mean()
+
+Export.image.toDrive({
+  image: mN204,
+  description: 'mean_NO2_values_Nepal_April_2020',
+  region: Nepal_outline
+});
+  
+ 
+// July 2020
+var N207 = ee.ImageCollection('COPERNICUS/S5P/OFFL/L3_NO2')
+  .select('tropospheric_NO2_column_number_density')
+  .filterDate('2020-07-01', '2020-07-31');
+  
+var mN207 = N207.mean()
+
+Export.image.toDrive({
+  image: mN207,
+  description: 'mean_NO2_values_Nepal_July_2020',
+  region: Nepal_outline
+});
+  
+
+//October 2020  
+var N2010 = ee.ImageCollection('COPERNICUS/S5P/OFFL/L3_NO2')
+  .select('tropospheric_NO2_column_number_density')
+  .filterDate('2020-10-01', '2020-10-31');
+  
+var mN2010 = N2010.mean()
+
+Export.image.toDrive({
+  image: mN2010,
+  description: 'mean_NO2_values_Nepal_October_2020',
+  region: Nepal_outline
+});  
+
+
+
+
+
+
+
+
+
+  
+// Donwload all the optical depth data for Asia big
+
+//Load all the aerosol data
+
+
+
+//2018
+
+//for January 2018
+var aA181 = ee.ImageCollection("ECMWF/CAMS/NRT")
+  .select('total_aerosol_optical_depth_at_550nm_surface')
+  .filterDate('2018-01-01', '2018-01-31');
+  
+var aA181m = aA181.mean()
+
+Export.image.toDrive({
+  image: aA181m,
+  description: 'nAerosol_Asia_January_2018',
+  region: Asia_big
+});
+
+
+//for April 2018
+var aA184 = ee.ImageCollection("ECMWF/CAMS/NRT")
+  .select('total_aerosol_optical_depth_at_550nm_surface')
+  .filterDate('2018-04-01', '2018-04-30');
+  
+var aA184m = aA184.mean()
+
+Export.image.toDrive({
+  image: aA184m,
+  description: 'nAerosol_Asia_April_2018',
+  region: Asia_big
+});
+
+
+//for July 2018
+var aA187 = ee.ImageCollection("ECMWF/CAMS/NRT")
+  .select('total_aerosol_optical_depth_at_550nm_surface')
+  .filterDate('2018-07-01', '2018-07-31');
+  
+var aA187m = aA187.mean()
+
+Export.image.toDrive({
+  image: aA187m,
+  description: 'nAerosol_Asia_July_2018',
+  region: Asia_big
+});
+
+
+//for October 2018
+var aA1810 = ee.ImageCollection("ECMWF/CAMS/NRT")
+  .select('total_aerosol_optical_depth_at_550nm_surface')
+  .filterDate('2018-10-01', '2018-10-31');
+  
+var aA1810m = aA1810.mean()
+
+Export.image.toDrive({
+  image: aA1810m,
+  description: 'nAerosol_Asia_October_2018',
+  region: Asia_big
+});
+
+
+
+//2019
+
+//for January 2019
+var aA191 = ee.ImageCollection("ECMWF/CAMS/NRT")
+  .select('total_aerosol_optical_depth_at_550nm_surface')
+  .filterDate('2019-01-01', '2019-01-31');
+  
+var aA191m = aA191.mean()
+
+Export.image.toDrive({
+  image: aA191m,
+  description: 'nAerosol_Asia_January_2019',
+  region: Asia_big
+});
+
+
+//for April 2019
+var aA194 = ee.ImageCollection("ECMWF/CAMS/NRT")
+  .select('total_aerosol_optical_depth_at_550nm_surface')
+  .filterDate('2019-04-01', '2019-04-30');
+  
+var aA194m = aA194.mean()
+
+Export.image.toDrive({
+  image: aA194m,
+  description: 'nAerosol_Asia_April_2019',
+  region: Asia_big
+});
+
+
+//for July 2019
+var aA197 = ee.ImageCollection("ECMWF/CAMS/NRT")
+  .select('total_aerosol_optical_depth_at_550nm_surface')
+  .filterDate('2019-07-01', '2019-07-31');
+  
+var aA197m = aA197.mean()
+
+Export.image.toDrive({
+  image: aA197m,
+  description: 'nAerosol_Asia_July_2019',
+  region: Asia_big
+});
+
+
+//for October 2019
+var aA1910 = ee.ImageCollection("ECMWF/CAMS/NRT")
+  .select('total_aerosol_optical_depth_at_550nm_surface')
+  .filterDate('2019-10-01', '2019-10-31');
+  
+var aA1910m = aA1910.mean()
+
+Export.image.toDrive({
+  image: aA1910m,
+  description: 'nAerosol_Asia_October_2019',
+  region: Asia_big
+});
+
+
+
+
+//2020
+
+//for January 2020
+var aA201 = ee.ImageCollection("ECMWF/CAMS/NRT")
+  .select('total_aerosol_optical_depth_at_550nm_surface')
+  .filterDate('2020-01-01', '2020-01-31');
+  
+var aA201m = aA201.mean()
+
+Export.image.toDrive({
+  image: aA201m,
+  description: 'nAerosol_Asia_January_2020',
+  region: Asia_big
+});
+
+
+//for April 2020
+var aA204 = ee.ImageCollection("ECMWF/CAMS/NRT")
+  .select('total_aerosol_optical_depth_at_550nm_surface')
+  .filterDate('2020-04-01', '2020-04-30');
+  
+var aA204m = aA204.mean()
+
+Export.image.toDrive({
+  image: aA204m,
+  description: 'nAerosol_Asia_April_2020',
+  region: Asia_big
+});
+
+
+//for July 2020
+var aA207 = ee.ImageCollection("ECMWF/CAMS/NRT")
+  .select('total_aerosol_optical_depth_at_550nm_surface')
+  .filterDate('2020-07-01', '2020-07-31');
+  
+var aA207m = aA207.mean()
+
+Export.image.toDrive({
+  image: aA207m,
+  description: 'nAerosol_Asia_July_2020',
+  region: Asia_big
+});
+
+
+//for October 2020
+var aA2010 = ee.ImageCollection("ECMWF/CAMS/NRT")
+  .select('total_aerosol_optical_depth_at_550nm_surface')
+  .filterDate('2020-10-01', '2020-10-31');
+  
+var aA2010m = aA2010.mean()
+
+Export.image.toDrive({
+  image: aA2010m,
+  description: 'nAerosol_Asia_October_2020',
+  region: Asia_big
+});
